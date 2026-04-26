@@ -255,6 +255,9 @@ async function genPolaroid(cid, isE) {
   cv.width = contentW + padding * 2;
   cv.height = contentH + padding * 2 + bottomPad;
   const x = cv.getContext("2d");
+  
+  // 显式清除画布以确保透明度
+  x.clearRect(0, 0, cv.width, cv.height);
 
   x.fillStyle = "rgba(0,0,0,0.15)";
   x.fillRect(6, 8, cv.width - 12, cv.height - 12);
@@ -388,8 +391,10 @@ async function genCard(containerId, elementId, scale = 4) {
   
   const w = document.createElement("div");
   w.className = "polaroid-photo";
+  w.style.background = "transparent"; // 确保初始即透明
+  w.style.boxShadow = "none";
   w.innerHTML =
-    '<div style="font-size:40px;text-align:center;padding:30px;">🃏 进化中...</div>';
+    '<div style="font-size:40px;text-align:center;padding:30px;background:rgba(255,255,255,0.8);border-radius:12px;">🃏 进化中...</div>';
   container.innerHTML = "";
   container.appendChild(w);
   w.offsetHeight;
@@ -403,6 +408,9 @@ async function genCard(containerId, elementId, scale = 4) {
     cv.height = baseH * scale;
     const ctx = cv.getContext("2d");
     ctx.scale(scale, scale);
+
+    // 显式清除画布以确保透明度
+    ctx.clearRect(0, 0, baseW, baseH);
 
     ctx.fillStyle = getRandomColor();
     roundRect(ctx, 0, 0, baseW, baseH, 15);
@@ -551,8 +559,6 @@ async function genCard(containerId, elementId, scale = 4) {
     finalImg.crossOrigin = "Anonymous";
     finalImg.alt = "Pokemon Card";
     finalImg.style.width = "100%";
-    finalImg.style.borderRadius = "11px";
-    finalImg.style.boxShadow = "0 8px 16px rgba(0,0,0,0.25)";
 
     finalImg.onload = () => {
       w.innerHTML = "";
@@ -560,6 +566,7 @@ async function genCard(containerId, elementId, scale = 4) {
       w.style.background = "transparent";
       w.style.borderRadius = "0";
       w.style.boxShadow = "none";
+      w.style.filter = "drop-shadow(0 12px 20px rgba(0,0,0,0.35))"; // 使用 drop-shadow 替代 box-shadow
       w.appendChild(finalImg);
       createSaveHint(container, false);
     };
