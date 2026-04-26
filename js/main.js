@@ -443,19 +443,20 @@ async function genCard(containerId, elementId, scale = 4) {
 
     const imgMargin = 25;
     const imgW = baseW - imgMargin * 2;
-    const imgH = 200;
+    const imgH = 185; // 高度缩小一点，原为 200
     const imgX = imgMargin;
     const imgY = margin + 50;
 
     ctx.strokeStyle = '#999';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1;
     ctx.strokeRect(imgX, imgY, imgW, imgH);
     
     ctx.fillStyle = '#fff';
     ctx.fillRect(imgX, imgY, imgW, imgH);
     
     ctx.save();
-    // 限制图片在指定区域内，并给一点圆角让观感更好
+    // 裁剪区域确保不溢出
+    ctx.beginPath();
     roundRect(ctx, imgX, imgY, imgW, imgH, 4);
     ctx.clip();
     
@@ -467,29 +468,26 @@ async function genCard(containerId, elementId, scale = 4) {
       img.crossOrigin = 'anonymous';
       await new Promise(resolve => {
         img.onload = () => {
+          // 保持比例模式：Fit/Contain
           const imgRatio = img.width / img.height;
-          const canvasRatio = imgW / imgH;
-          let sx, sy, sw, sh;
-          if (imgRatio > canvasRatio) {
-            sh = img.height;
-            sw = img.height * canvasRatio;
-            sx = (img.width - sw) / 2;
-            sy = 0;
+          const targetRatio = imgW / imgH;
+          let drawW, drawH;
+          if (imgRatio > targetRatio) {
+            drawW = imgW;
+            drawH = imgW / imgRatio;
           } else {
-            sw = img.width;
-            sh = img.width / canvasRatio;
-            sx = 0;
-            sy = (img.height - sh) / 2;
+            drawH = imgH;
+            drawW = drawH * imgRatio;
           }
-          ctx.drawImage(img, sx, sy, sw, sh, imgX, imgY, imgW, imgH);
-          ctx.restore(); // 必须在绘制后恢复
+          const dx = imgX + (imgW - drawW) / 2;
+          const dy = imgY + (imgH - drawH) / 2;
+          ctx.drawImage(img, dx, dy, drawW, drawH);
           resolve();
         };
         img.onerror = () => {
           ctx.font = '72px sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText(currentCat.emoji, imgX + imgW/2, imgY + imgH/2 + 25);
-          ctx.restore();
           resolve();
         };
       });
@@ -497,8 +495,8 @@ async function genCard(containerId, elementId, scale = 4) {
       ctx.font = '72px sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText(currentCat.emoji, imgX + imgW/2, imgY + imgH/2 + 25);
-      ctx.restore();
     }
+    ctx.restore(); // 统一恢复状态
 
     ctx.fillStyle = '#ffde00';
     ctx.fillRect(imgX + 10, imgY + imgH - 5, imgW - 20, 15);
