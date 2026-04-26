@@ -1,4 +1,4 @@
-import { bank, IEBank, NSBank, FTBank, PJBank } from './quizBank.js';
+import { IEBank, NSBank, FTBank, PJBank } from './quizBank.js';
 import { catMap } from './catMap.js';
 import { STAMP_BLACK_URL, STAMP_WHITE_URL } from './stamp.js';
 import { shuffle, getRandomColor, roundRect, wrapText, drawEmojiBackground } from './utils.js';
