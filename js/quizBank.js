@@ -1,5 +1,5 @@
 // ==================== 50题题库 ====================
-const bank = [
+export const bank = [
   {
     text: "😴 累了你会？",
     options: [
@@ -502,7 +502,7 @@ const bank = [
   },
 ];
 
-const IEBank = bank.filter((q) => q.dim === "IE");
-const NSBank = bank.filter((q) => q.dim === "NS");
-const FTBank = bank.filter((q) => q.dim === "FT");
-const PJBank = bank.filter((q) => q.dim === "PJ");
+export const IEBank = bank.filter((q) => q.dim === "IE");
+export const NSBank = bank.filter((q) => q.dim === "NS");
+export const FTBank = bank.filter((q) => q.dim === "FT");
+export const PJBank = bank.filter((q) => q.dim === "PJ");

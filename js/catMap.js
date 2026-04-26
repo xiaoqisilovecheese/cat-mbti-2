@@ -1,4 +1,4 @@
-const catMap = {
+export const catMap = {
   INFP: {
     name: "山东狮子猫",
     emoji: "🦁🐱",
