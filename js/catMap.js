@@ -15,7 +15,7 @@ export const catMap = {
   ESFP: {
     name: "中华田园橘",
     emoji: "🍊🐈",
-    url: "images/cat_png/zhonghuatianyuanju.png",
+    url: "images/cat_png/zhonghuatianyuanjumao.png",
     tag: "「橘色旋风」",
     desc: "有灶台的地方就有橘门子弟。",
     info: "社牛干饭王，走到哪吃到哪，气氛组担当。天生讨喜，有它在的地方就有笑声和抢食声。",

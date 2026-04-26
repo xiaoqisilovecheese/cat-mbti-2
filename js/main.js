@@ -192,7 +192,7 @@ function showResult() {
   const portraitHtml = currentCat.url
     ? `<img class="cat-photo-big" src="${currentCat.url}" alt="${currentCat.name}">`
     : `<span style="font-size:56px;">${currentCat.emoji}</span>`;
-  document.getElementById("shareArea").innerHTML = `<div style="text-align:center;"><div class="guide-text">✨ 经过选择，你的猫分身是 ✨</div>${portraitHtml}<h2>${currentCat.name}</h2><span class="mbti-tag" style="white-space: nowrap;">${currentCat.mbti}</span></div><div style="margin:12px 0;"><p style="font-weight:800;font-size:17px;">${currentCat.tag}</p><p style="font-size:13px;">${currentCat.desc}</p><p style="font-size:12px;opacity:0.8;margin-top:4px;">${currentCat.info}</p></div>${b}<p style="text-align:center;font-size:12px;opacity:0.7;margin-top:8px;">🐾 猫猫世界大分身 · 江湖闯荡猫 🐾</p>`;
+  document.getElementById("shareArea").innerHTML = `<div style="text-align:center;"><div class="guide-text">✨ 经过选择，你的猫分身是 ✨</div>${portraitHtml}<h2>${currentCat.name}</h2><span class="mbti-tag" style="white-space: nowrap; margin-top: 4px;">${currentCat.mbti}</span></div><div style="margin:12px 0;"><p style="font-weight:800;font-size:17px;">${currentCat.tag}</p><p style="font-size:13px;">${currentCat.desc}</p><p style="font-size:12px;opacity:0.8;margin-top:4px;">${currentCat.info}</p></div>${b}<p style="text-align:center;font-size:12px;opacity:0.7;margin-top:8px;">🐾 猫猫世界大分身 · 江湖闯荡猫 🐾</p>`;
   const portraitBlock = currentCat.url
     ? `<img class="cat-photo-big" src="${currentCat.url}" alt="${currentCat.name}">`
     : `<span style="font-size:48px; white-space: nowrap;">${currentCat.emoji}</span>`;
@@ -453,6 +453,12 @@ async function genCard(containerId, elementId, scale = 4) {
     
     ctx.fillStyle = '#fff';
     ctx.fillRect(imgX, imgY, imgW, imgH);
+    
+    ctx.save();
+    // 限制图片在指定区域内，并给一点圆角让观感更好
+    roundRect(ctx, imgX, imgY, imgW, imgH, 4);
+    ctx.clip();
+    
     drawEmojiBackground(ctx, imgX, imgY, imgW, imgH, 60);
 
     if (currentCat.url) {
@@ -476,12 +482,14 @@ async function genCard(containerId, elementId, scale = 4) {
             sy = (img.height - sh) / 2;
           }
           ctx.drawImage(img, sx, sy, sw, sh, imgX, imgY, imgW, imgH);
+          ctx.restore(); // 必须在绘制后恢复
           resolve();
         };
         img.onerror = () => {
           ctx.font = '72px sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText(currentCat.emoji, imgX + imgW/2, imgY + imgH/2 + 25);
+          ctx.restore();
           resolve();
         };
       });
@@ -489,6 +497,7 @@ async function genCard(containerId, elementId, scale = 4) {
       ctx.font = '72px sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText(currentCat.emoji, imgX + imgW/2, imgY + imgH/2 + 25);
+      ctx.restore();
     }
 
     ctx.fillStyle = '#ffde00';
@@ -539,7 +548,7 @@ async function genCard(containerId, elementId, scale = 4) {
     ctx.font = 'italic 8px "Arial", sans-serif';
     const flavorLines = wrapText(ctx, currentCat.story, imgW - 20);
     flavorLines.slice(0, 3).forEach((line, i) => {
-      ctx.fillText(line, imgX + 10, bottomY + 32 + i * 10);
+      ctx.fillText(line, imgX + 10, bottomY + 26 + i * 10);
     });
 
     const catKeys = Object.keys(catMap);
