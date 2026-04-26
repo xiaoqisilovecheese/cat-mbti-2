@@ -90,6 +90,12 @@ function reset() {
   ans = new Array(totalBankLen).fill(null);
   idx = 0;
   scores = { I: 0, E: 0, N: 0, S: 0, F: 0, T: 0, P: 0, J: 0 };
+  currentCat = null;
+  const photoIds = ["photoContainer", "easterPhotoContainer", "cardPhotoContainer"];
+  photoIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = "";
+  });
 }
 
 function calculateScores() {
@@ -201,6 +207,8 @@ function showResult() {
   document.getElementById("resultView").classList.remove("hidden");
   document.getElementById("photoContainer").innerHTML = "";
   document.getElementById("easterPhotoContainer").innerHTML = "";
+  const cardContainer = document.getElementById("cardPhotoContainer");
+  if (cardContainer) cardContainer.innerHTML = "";
 }
 
 async function drawStamp(ctx, canvasWidth, canvasHeight, isE) {
