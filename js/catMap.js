@@ -2,6 +2,7 @@ export const catMap = {
   INFP: {
     name: "山东狮子猫",
     emoji: "🦁🐱",
+    url: "images/cat_png/shandongshizimao.png",
     tag: "「雪袍侠客」",
     desc: "外表高冷，偷偷用尾巴给流浪小鸟挡风。",
     info: "温柔梦想家，心软的神，爱发呆看云。内心柔软却不太会表达，习惯用行动默默守护重要的人。",
@@ -14,6 +15,7 @@ export const catMap = {
   ESFP: {
     name: "中华田园橘",
     emoji: "🍊🐈",
+    url: "images/cat_png/zhonghuatianyuanju.png",
     tag: "「橘色旋风」",
     desc: "有灶台的地方就有橘门子弟。",
     info: "社牛干饭王，走到哪吃到哪，气氛组担当。天生讨喜，有它在的地方就有笑声和抢食声。",
@@ -26,6 +28,7 @@ export const catMap = {
   INFJ: {
     name: "玄猫·镇宅",
     emoji: "🐈⬛🌙",
+    url: "images/cat_png/xuanmao.png",
     tag: "「暗夜智者」",
     desc: "蹲屋顶听星星说悄悄话。",
     info: "神秘哲学家，暗中观察人类，其实很暖。善于洞察人心，在沉默中给予最深的陪伴。",
@@ -38,6 +41,7 @@ export const catMap = {
   ENTP: {
     name: "临清狮子猫",
     emoji: "👁️🦁",
+    url: "images/cat_png/linqingshizimao.png",
     tag: "「蓝眼话匣」",
     desc: "每天巡逻三遍，和每只蚂蚁打招呼。",
     info: "话痨小喇叭，好奇心爆棚，拆家小能手。脑子转得飞快，什么事都能讲出一套自己的理论。",
@@ -50,6 +54,7 @@ export const catMap = {
   ISTP: {
     name: "中华狸花猫",
     emoji: "🐅🍃",
+    url: "images/cat_png/zhonghualihuamao.png",
     tag: "「条纹刺客」",
     desc: "飞檐走壁祖传技能，瓦片质检员。",
     info: "独行侠客，身手矫健，江湖我最大。不爱废话但行动力一流，遇到麻烦直接用实力说话。",
@@ -62,6 +67,7 @@ export const catMap = {
   ISFJ: {
     name: "异瞳白猫",
     emoji: "👀❄️",
+    url: "images/cat_png/yitongbaimao.png",
     tag: "「阴阳眼祭司」",
     desc: "左眼看人间烟火，右眼看万物有灵。",
     info: "安静守护者，圆滚滚治愈系，默默陪伴。安静的陪伴胜过千言万语，是最温暖的港湾。",
@@ -74,6 +80,7 @@ export const catMap = {
   ENFP: {
     name: "奶牛猫·警长",
     emoji: "🐄🚨",
+    url: "images/cat_png/nainiumao.png",
     tag: "「黑白喜剧人」",
     desc: "永远在演一场只有自己懂的默剧。",
     info: "戏精本精，精神状态美丽，快乐小狗猫。每天都是新剧本，每件事都能被它演成喜剧大片。",
@@ -86,6 +93,7 @@ export const catMap = {
   ESFJ: {
     name: "三花猫·娘娘",
     emoji: "🌸😼",
+    url: "images/cat_png/sanhuamao.png",
     tag: "「三色话事猫」",
     desc: "每条小巷都有它的眼线，居委会名誉主席。",
     info: "热心大姐姐，爱操心，每个毛都要管。把大家都放在心里，是社区里最让人安心的存在。",
@@ -98,6 +106,7 @@ export const catMap = {
   ISTJ: {
     name: "简州猫",
     emoji: "🐾🏯",
+    url: "images/cat_png/jianzhoumao.png",
     tag: "「四耳神捕」",
     desc: "四川简州猫天生四耳，明朝皇室贡品。",
     info: "严谨守序，恪尽职守，一丝不苟的完美主义者。每天按计划行事，从不迟到早退，规矩就是规矩。",
@@ -123,6 +132,7 @@ export const catMap = {
   INTJ: {
     name: "漠北黑猫",
     emoji: "🏜️⚔️",
+    url: "images/cat_png/mobeiheimao.png",
     tag: "「西域军师」",
     desc: "丝绸之路上的黑猫，独立果敢善于谋略。",
     info: "战略大师，独立果敢，一切尽在掌控之中。冷静到让人害怕，每一步都经过精密计算从不冲动。",
@@ -135,6 +145,7 @@ export const catMap = {
   INTP: {
     name: "临清卷耳猫",
     emoji: "📜🔍",
+    url: "images/cat_png/linqingjuanermao.png",
     tag: "「藏书阁主」",
     desc: "山东临清卷耳猫，好奇心旺盛沉迷探索。",
     info: "逻辑控，好奇心永动机，沉迷破解宇宙真理。一个问题能研究一整天，探索过程比结果更让它兴奋。",
@@ -147,6 +158,7 @@ export const catMap = {
   ESTP: {
     name: "川西猎猫",
     emoji: "⛰️🏹",
+    url: "images/cat_png/chuanxiliemao.png",
     tag: "「蜀道行者」",
     desc: "四川山区的猎猫，身手敏捷活在当下。",
     info: "大胆冒险家，行动力爆表，天生的猎手。想到就做绝不犹豫，胆子大路子野，没有它不敢闯的地方。",
@@ -159,6 +171,7 @@ export const catMap = {
   ENFJ: {
     name: "京狮猫",
     emoji: "🦁👑",
+    url: "images/cat_png/jingshimao.png",
     tag: "「紫禁之巅」",
     desc: "北京宫猫后代，天生领袖温暖又威严。",
     info: "天生的领导者，温暖而有威严，众人追随。关心每个同伴的成长，用真诚和热情感染周围所有人猫。",
@@ -171,6 +184,7 @@ export const catMap = {
   ENTJ: {
     name: "徽商猫",
     emoji: "🧮💼",
+    url: "images/cat_png/huishangmao.png",
     tag: "「商帮掌柜」",
     desc: "安徽商帮猫，精明果断天生的组织者。",
     info: "天生的管理者，效率至上，目标必达。天生的大管家，能把混乱的局面迅速整顿得井井有条。",
@@ -183,6 +197,7 @@ export const catMap = {
   ESTJ: {
     name: "关东虎斑",
     emoji: "❄️🛡️",
+    url: "images/cat_png/guandonghuban.png",
     tag: "「雪原卫士」",
     desc: "东北虎斑猫，忠诚可靠守护家园。",
     info: "忠诚可靠的守护者，秩序与传统的捍卫者。说到做到从不食言，是所有人猫心中最值得信赖的靠山。",
