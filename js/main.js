@@ -443,7 +443,7 @@ async function genCard(containerId, elementId, scale = 4) {
 
     const imgMargin = 25;
     const imgW = baseW - imgMargin * 2;
-    const imgH = 185; // 高度缩小一点，原为 200
+    const imgH = 175; // 高度继续缩小 10px，原为 185
     const imgX = imgMargin;
     const imgY = margin + 50;
 
@@ -468,16 +468,17 @@ async function genCard(containerId, elementId, scale = 4) {
       img.crossOrigin = 'anonymous';
       await new Promise(resolve => {
         img.onload = () => {
-          // 保持比例模式：Fit/Contain
+          // 保持比例模式：Fit/Contain，并稍微缩小比例以留白
+          const paddingScale = 0.9;
           const imgRatio = img.width / img.height;
           const targetRatio = imgW / imgH;
           let drawW, drawH;
           if (imgRatio > targetRatio) {
-            drawW = imgW;
-            drawH = imgW / imgRatio;
+            drawW = imgW * paddingScale;
+            drawH = (imgW * paddingScale) / imgRatio;
           } else {
-            drawH = imgH;
-            drawW = drawH * imgRatio;
+            drawH = imgH * paddingScale;
+            drawW = (drawH * imgRatio);
           }
           const dx = imgX + (imgW - drawW) / 2;
           const dy = imgY + (imgH - drawH) / 2;
@@ -498,12 +499,36 @@ async function genCard(containerId, elementId, scale = 4) {
     }
     ctx.restore(); // 统一恢复状态
 
+    // 优化：将简单的背景填充改为更具设计感的扁平胶囊标签
+    const badgeText = `NO. ${currentCat.mbti}  ${currentCat.tag}`;
+    ctx.font = 'bold italic 10px "Arial", sans-serif'; 
+    const badgeW = ctx.measureText(badgeText).width + 24;
+    const badgeH = 18;
+    const badgeX = imgX + (imgW - badgeW) / 2;
+    const badgeY = imgY + imgH - (badgeH / 2);
+
+    // 绘制标签阴影
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,0.15)';
+    ctx.shadowBlur = 5;
+    ctx.shadowOffsetY = 2;
+    
+    // 绘制标签主体 (胶囊形状)
     ctx.fillStyle = '#ffde00';
-    ctx.fillRect(imgX + 10, imgY + imgH - 5, imgW - 20, 15);
-    ctx.fillStyle = '#333';
-    ctx.font = 'italic 10px "Arial", sans-serif';
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, 9);
+    ctx.fill();
+    ctx.restore();
+
+    // 绘制标签边框
+    ctx.strokeStyle = '#222';
+    ctx.lineWidth = 1.2;
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, 9);
+    ctx.stroke();
+
+    // 绘制标签文字
+    ctx.fillStyle = '#222';
     ctx.textAlign = 'center';
-    ctx.fillText(`NO. ${currentCat.mbti}  ${currentCat.tag}`, imgX + imgW/2, imgY + imgH + 6);
+    ctx.fillText(badgeText, imgX + imgW/2, badgeY + (badgeH / 2) + 4);
 
     let skillY = imgY + imgH + 35;
     ctx.textAlign = 'left';
